@@ -22,18 +22,47 @@ import TabNavigator from './src/navigator/TabNavigator';
 import DrawerNavigator from './src/navigator/DrawerNavigator';
 import 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Icon } from 'react-native-elements'
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import TabBar from './src/tabBar/TabBar';
+import { Card, ListItem, Button, Icon, Header } from 'react-native-elements'
+
+const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator()
 
 class App extends React.Component {
   render() {
-    const Tab = createBottomTabNavigator();
-
     return (
-      <NavigationContainer>
+    <NavigationContainer>
+      <TabBar />
+        <Drawer.Navigator initialRouteName="Home">
+          <Drawer.Screen name="Home" component={MyStack} />
+          <Drawer.Screen name="Details" component={Details} />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    )
+  }
+}
+const MyStack = () => {
+    return (
+        <Stack.Navigator headerMode="none">
+        <Stack.Screen
+          name="Homee"
+          component={TabNav}
+          options={{
+              headerShown: false,
+              }}
+          />
+          <Stack.Screen name="TabBar" component={TabBar} />
+        </Stack.Navigator>
+    )
+}
 
-      <Tab.Navigator
+const TabNav = () => {
+  return (
+    <Tab.Navigator initialRouteName="Home"
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
@@ -59,10 +88,9 @@ class App extends React.Component {
       >
         <Tab.Screen name="Home" component={Homepage} />
         <Tab.Screen name="Settings" component={Details} />
-      </Tab.Navigator>
-      </NavigationContainer>
+    </Tab.Navigator>
     )
-  }
 }
+
 
 export default App;

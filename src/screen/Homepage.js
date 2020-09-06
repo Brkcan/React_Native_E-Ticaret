@@ -13,8 +13,29 @@ import {
   Image,
 } from 'react-native';
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
+import MyCustomRightComponent from '../tabBar/MyCustomRightComponent';
 
 class Homepage extends React.Component{
+
+state = {
+  buy: false,
+  deger: 1,
+}
+
+onBuy = () => {
+  console.log("Satın alındı...");
+  this.setState({
+    buy: true,
+    deger: this.state.deger + 1,
+  })
+  console.log(this.state.buy);
+  console.log(this.state.deger);
+    return (
+      <View>
+        <MyCustomRightComponent degerState='3' />
+      </View>
+  )
+}
 
   render() {
     return(
@@ -32,7 +53,9 @@ class Homepage extends React.Component{
           <Button
             icon={<Icon name='shop' color='#ffffff' />}
             buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, width: 90}}
-            title='Buy' />
+            title='Buy'
+            onPress={this.onBuy}
+            />
             <Text style={{marginLeft: 40, width: 80, fontWeight: 'bold', fontSize: 20}}>
               $10.99
             </Text>
