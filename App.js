@@ -36,7 +36,7 @@ class App extends React.Component {
   render() {
     return (
     <NavigationContainer>
-      <TabBar />
+      
         <Drawer.Navigator initialRouteName="Home">
           <Drawer.Screen name="Home" component={MyStack} />
           <Drawer.Screen name="Details" component={Details} />

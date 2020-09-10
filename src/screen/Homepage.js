@@ -12,17 +12,18 @@ import {
   StatusBar,
   Image,
 } from 'react-native';
-import { Card, ListItem, Button, Icon } from 'react-native-elements'
+import { Card, ListItem, Button, Icon,Header } from 'react-native-elements'
 import MyCustomRightComponent from '../tabBar/MyCustomRightComponent';
+import TabBar from '../tabBar/TabBar';
 
 class Homepage extends React.Component{
 
 state = {
   buy: false,
-  deger: 1,
+  deger: 0,
 }
 
-onBuy = () => {
+onBuy = (deger) => {
   console.log("Satın alındı...");
   this.setState({
     buy: true,
@@ -30,16 +31,14 @@ onBuy = () => {
   })
   console.log(this.state.buy);
   console.log(this.state.deger);
-    return (
-      <View>
-        <MyCustomRightComponent degerState='3' />
-      </View>
-  )
+
 }
 
   render() {
+
     return(
       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+      <TabBar deger={this.state.deger}/>
       <ScrollView>
       <Card>
         <Card.Title>HELLO WORLD</Card.Title>
